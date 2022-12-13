@@ -12,12 +12,12 @@ const EmailVerify = () => {
     useEffect(() => {
         const verifyEmailUrl = async () => {
             try {
-                const url = `http://localhost:8080/api/users/${params.id}/verify/${params.token}`
+                const url = `https://auth-emailverify-fgd0.onrender.com/api/users/${params.id}/verify/${params.token}`
                 const { data } = await axios.get(url)
-                console.log(data)
                 setValidUrl(true)
             } catch (error) {
                 console.log(error)
+                setValidUrl(false)
             }
         }
 

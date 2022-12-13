@@ -13,6 +13,7 @@ const Signup = () => {
         lastName: '',
         email: '',
         password: '',
+        confirmPassword: '',
     })
 
     const handleChange = (e) => {
@@ -22,9 +23,10 @@ const Signup = () => {
     const handleSubmit = async(e) => {
             e.preventDefault();
             try {
-                const url = "http://localhost:8080/api/users/signup";
+                const url = "https://auth-emailverify-fgd0.onrender.com/api/users/signup";
                 const { data : res } = await axios.post(url, data)
                 setMsg(res.message)
+                setError("");
             } catch (error) {
                 if(error.response && error.response.status >= 400 && error.response.status < 500) {
                     setError(error.response.data.message);
@@ -79,6 +81,15 @@ const Signup = () => {
                             placeholder='Password'
                             name="password"
                             value = {data.password}
+                            required
+                            className={styles.input}
+                            onChange = {handleChange}
+                        />
+                        <input 
+                            type="password" 
+                            placeholder='Confirm Password'
+                            name="confirmPassword"
+                            value = {data.confirmPassword}
                             required
                             className={styles.input}
                             onChange = {handleChange}
